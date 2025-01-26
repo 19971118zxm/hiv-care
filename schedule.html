@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Schedule Appointment - StatusNeutralAI</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link rel="stylesheet" href="chat-widget.css"/>
+
+   <style>
+       * {
+           padding: 0;
+           margin: 0;
+           box-sizing: border-box;
+           font-family: Arial, sans-serif;
+       }
+
+       .container {
+           max-width: 1200px;
+           margin: 0 auto;
+           padding: 20px;
+       }
+
+       nav {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           margin-bottom: 50px;
+       }
+
+       .logo {
+           color: #6b46c1;
+           font-size: 24px;
+           font-weight: bold;
+       }
+
+       .nav-links {
+           display: flex;
+           gap: 30px;
+           align-items: center;
+       }
+
+       .nav-links a {
+           text-decoration: none;
+           color: #333;
+           font-size: 16px;
+       }
+
+       .find-care-btn {
+           background-color: #6b46c1;
+           color: white;
+           padding: 10px 20px;
+           border-radius: 5px;
+           text-decoration: none;
+       }
+
+       .scheduling-container {
+           background: white;
+           padding: 40px;
+       }
+
+       .schedule-header {
+           display: flex;
+           justify-content: flex-start;
+           margin-bottom: 40px;
+       }
+
+       .ai-status {
+           color: #6b46c1;
+           font-size: 24px;
+           display: flex;
+           align-items: center;
+           gap: 10px;
+       }
+
+       .calendar-grid {
+           display: grid;
+           grid-template-columns: 300px 1fr;
+           gap: 40px;
+       }
+
+       .service-selection h3 {
+           font-size: 20px;
+           margin-bottom: 20px;
+           color: #333;
+       }
+
+       .service-option {
+           padding: 15px;
+           margin-bottom: 15px;
+           font-size: 18px;
+           display: flex;
+           align-items: center;
+           gap: 10px;
+           cursor: pointer;
+           border: none;
+       }
+
+       .service-option.selected {
+           background: #6b46c1;
+           color: white;
+           border-radius: 8px;
+       }
+
+       .scheduling-area h3 {
+           font-size: 20px;
+           margin-bottom: 20px;
+           color: #333;
+       }
+
+       .available-slots {
+           display: grid;
+           grid-template-columns: repeat(3, 1fr);
+           gap: 20px;
+       }
+
+       .time-slot {
+           background: #f8f9fa;
+           padding: 20px;
+           text-align: center;
+           border-radius: 8px;
+           cursor: pointer;
+           border: none;
+           position: relative;
+       }
+
+       .time-slot.ai-suggested {
+           border: 2px solid #6b46c1;
+       }
+
+       .ai-badge {
+           position: absolute;
+           top: -10px;
+           right: -10px;
+           background: #6b46c1;
+           color: white;
+           padding: 4px 12px;
+           border-radius: 15px;
+           font-size: 14px;
+       }
+
+       .time-slot strong {
+           display: block;
+           margin-bottom: 5px;
+           font-size: 16px;
+       }
+   </style>
+</head>
+<body>
+   <div class="container">
+       <nav>
+           <div class="logo">StatusNeutralAI</div>
+           <div class="nav-links">
+               <a href="index.html">Coordinate strategic development</a>
+               <a href="communication.html">Communication</a>
+               <a href="schedule.html">Schedule Appointment</a>
+               <a href="docform.html">DocForm</a>
+               <a href="evaluation.html">Evaluation</a>
+           </div>
+       </nav>
+
+       <div class="scheduling-container">
+           <div class="schedule-header">
+               <div class="ai-status">
+                   <i class="fas fa-robot"></i>
+                   AI Calendar Integration Active
+               </div>
+           </div>
+
+           <div class="calendar-grid">
+               <div class="service-selection">
+                   <h3>Select Service</h3>
+                   <div class="service-option selected" data-service="hiv">
+                       <i class="fas fa-microscope"></i>
+                       HIV Testing
+                   </div>
+                   <div class="service-option" data-service="prep">
+                       <i class="fas fa-pills"></i>
+                       PrEP Services
+                   </div>
+                   <div class="service-option" data-service="counseling">
+                       <i class="fas fa-user-md"></i>
+                       Counseling
+                   </div>
+               </div>
+
+               <div class="scheduling-area">
+                   <h3>Available Time Slots - Next 7 Days</h3>
+                   <div class="available-slots">
+                       <!-- HIV Testing Slots -->
+                       <div class="time-slot ai-suggested" data-service="hiv">
+                           <div class="ai-badge">AI Suggested</div>
+                           <strong>Today</strong>
+                           2:00 PM
+                       </div>
+                       <div class="time-slot" data-service="hiv">
+                           <strong>Tomorrow</strong>
+                           10:30 AM
+                       </div>
+                       <div class="time-slot" data-service="hiv">
+                           <strong>Tomorrow</strong>
+                           3:15 PM
+                       </div>
+                       <div class="time-slot" data-service="hiv">
+                           <strong>Wed, Mar 13</strong>
+                           11:00 AM
+                       </div>
+                       <div class="time-slot" data-service="hiv">
+                           <strong>Wed, Mar 13</strong>
+                           2:30 PM
+                       </div>
+                       <div class="time-slot" data-service="hiv">
+                           <strong>Thu, Mar 14</strong>
+                           9:45 AM
+                       </div>
+
+                       <!-- PrEP Services Slots -->
+                       <div class="time-slot ai-suggested" data-service="prep" style="display: none;">
+                           <div class="ai-badge">AI Suggested</div>
+                           <strong>Tomorrow</strong>
+                           9:00 AM
+                       </div>
+                       <div class="time-slot" data-service="prep" style="display: none;">
+                           <strong>Tomorrow</strong>
+                           2:30 PM
+                       </div>
+                       <div class="time-slot" data-service="prep" style="display: none;">
+                           <strong>Wed, Mar 13</strong>
+                           10:15 AM
+                       </div>
+                       <div class="time-slot" data-service="prep" style="display: none;">
+                           <strong>Thu, Mar 14</strong>
+                           1:45 PM
+                       </div>
+                       <div class="time-slot" data-service="prep" style="display: none;">
+                           <strong>Thu, Mar 14</strong>
+                           4:00 PM
+                       </div>
+                       <div class="time-slot" data-service="prep" style="display: none;">
+                           <strong>Fri, Mar 15</strong>
+                           11:30 AM
+                       </div>
+
+                       <!-- Counseling Slots -->
+                       <div class="time-slot ai-suggested" data-service="counseling" style="display: none;">
+                           <div class="ai-badge">AI Suggested</div>
+                           <strong>Tomorrow</strong>
+                           1:00 PM
+                       </div>
+                       <div class="time-slot" data-service="counseling" style="display: none;">
+                           <strong>Tomorrow</strong>
+                           3:30 PM
+                       </div>
+                       <div class="time-slot" data-service="counseling" style="display: none;">
+                           <strong>Wed, Mar 13</strong>
+                           9:30 AM
+                       </div>
+                       <div class="time-slot" data-service="counseling" style="display: none;">
+                           <strong>Wed, Mar 13</strong>
+                           2:00 PM
+                       </div>
+                       <div class="time-slot" data-service="counseling" style="display: none;">
+                           <strong>Thu, Mar 14</strong>
+                           11:15 AM
+                       </div>
+                       <div class="time-slot" data-service="counseling" style="display: none;">
+                           <strong>Thu, Mar 14</strong>
+                           4:30 PM
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <script>
+       const timeSlots = document.querySelectorAll('.time-slot');
+       const serviceOptions = document.querySelectorAll('.service-option');
+
+       function updateTimeSlots(selectedService) {
+           timeSlots.forEach(slot => {
+               if (slot.dataset.service === selectedService) {
+                   slot.style.display = 'block';
+               } else {
+                   slot.style.display = 'none';
+               }
+           });
+       }
+
+       serviceOptions.forEach(option => {
+           option.addEventListener('click', () => {
+               serviceOptions.forEach(o => o.classList.remove('selected'));
+               option.classList.add('selected');
+               updateTimeSlots(option.dataset.service);
+           });
+       });
+
+       timeSlots.forEach(slot => {
+           slot.addEventListener('click', () => {
+               timeSlots.forEach(s => s.style.background = '#f8f9fa');
+               slot.style.background = '#f0f0f0';
+           });
+       });
+   </script>
+   </div>
+   <script src="chat-widget.js"></script>
+   <div class="chat-widget">
+       <div class="chat-button" onclick="toggleChat()">
+           <i class="fas fa-robot"></i>
+       </div>
+       <div class="chat-window" id="chatWindow">
+           <div class="chat-header">
+               <i class="fas fa-robot"></i>
+               AI Assistant
+           </div>
+           <div class="chat-messages" id="chatMessages">
+               <div class="message bot">Hello! How can I help you today?</div>
+           </div>
+           <div class="chat-input">
+               <input type="text" placeholder="Type your message..." id="messageInput">
+               <button onclick="sendMessage()">Send</button>
+           </div>
+       </div>
+   </div>
+</body>
+</html>

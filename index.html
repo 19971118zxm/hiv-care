@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HIV Care Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="chat-widget.css"/>
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 50px;
+      }
+
+      .logo {
+        color: #6b46c1;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        height: 100%;
+        align-items: center;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .find-care-btn {
+        background-color: #6b46c1;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+
+      .main-content {
+        text-align: left;
+        margin-top: 40px;
+      }
+
+      h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .subtitle {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      .resource-btn {
+        display: flex;
+        align-items: center;
+        padding: 15px 0 0 0;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .resource-form {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 500px;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+
+      select.form-input {
+        background-color: white;
+        color: #666;
+      }
+      .accet {
+        padding: 12px;
+        font-size: 16px;
+        color: #666;
+      }
+      
+      .accet-item {
+        margin-top: 10px;
+      }
+      .search {
+        background-color: rgb(118, 56, 208);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      .data-share {
+        margin: 30px 0;
+      }
+
+      .data-share h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+
+      .data-consent {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .upload-section {
+        margin-top: 20px;
+      }
+
+      .upload-box {
+        border: 2px dashed #ccc;
+        padding: 30px;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .upload-box i {
+        font-size: 40px;
+        color: #6b46c1;
+        margin-bottom: 10px;
+      }
+
+      .upload-box input[type="file"] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="logo">StatusNeutralAI</div>
+        <div class="nav-links">
+          <a href="index.html">Coordinate strategic development</a>
+          <a href="communication.html">Communication</a>
+          <a href="schedule.html">Schedule Appointment</a>
+          <a href="docform.html">DocForm</a>
+          <a href="evaluation.html">Evaluation</a>
+      </div>
+      </nav>
+
+      <div class="main-content">
+        <h1>Connecting You with HIVCare Resources</h1>
+        <p class="subtitle">
+          Find nearby healthcare providers, support services, and resources
+          matched to your needs.
+        </p>
+        <div class="data-share">
+          <h2>Want more personalized recommendations?</h2>
+          <label class="data-consent">
+            <input type="checkbox" id="shareData" />
+            <span>I'm willing to share my medical data to receive better service</span>
+          </label>
+          
+          <div class="upload-section" id="uploadSection" style="display: none;">
+            <p>Upload your medical records (PDF, DOC, or image files)</p>
+            <div class="upload-box">
+              <i class="fas fa-upload"></i>
+              <p>Drop files here or click to upload</p>
+              <input type="file" multiple accept=".pdf,.doc,.docx,.jpg,.png" />
+            </div>
+          </div>
+        </div>
+        <p class="resource-btn">
+          <!-- <img src="location-icon.png" alt="Location icon"> -->
+          <i
+            class="fas fa-map-marked-alt"
+            style="color: rgb(90, 7, 181); margin-right: 5px"
+          ></i>
+          Find Local Resources
+        </p>
+        <form class="resource-form">
+          <input
+            type="text"
+            placeholder="Enter your ZIP code"
+            class="form-input"
+          />
+          <select class="form-input">
+            <option value="" selected>Select service type needed</option>
+            <option value="">HIV Testing</option>
+            <option value="">PrEP Services</option>
+            <option value="">HIV Treatment</option>
+            <option value="">Support Groups</option>
+            <option value="">Counseling Services</option>
+          </select>
+          <select class="form-input">
+            <option value="" selected>Select your insurance provider</option>
+            <option value="">Medicare</option>
+            <option value="">Medicaid</option>
+            <option value="">Private insurance</option>
+            <option value="">No insurance</option>
+          </select>
+          <select class="form-input">
+            <option value="" selected>Preferred language</option>
+            <option value="">English</option>
+            <option value="">Spanish</option>
+            <option value="">Mandarin</option>
+            <option value="">other</option>
+          </select>
+          <select class="form-input">
+            <option value="" selected>Cultural preferences</option>
+            <option value="">LGBTO+ Frlendlyk</option>
+            <option value="">Women's Health Specialist</option>
+            <option value="">Multicuitural Services</option>
+            <option value="">Faith-Based Services</option>
+          </select>
+          <select class="form-input">
+            <option value="" selected>Urgency of care needed</option>
+            <option value="">Routine care</option>
+            <option value="">Urgent care</option>
+            <option value="">Emergency care</option>
+          </select>
+
+          <div class="accet"></div>
+            <p >Additional Preferences</p>
+            <div class="accet-input">
+              <!-- 多选框 -->
+              <div class="accet-item">
+                <input
+                  type="checkbox"
+                  id="checkbox1"
+                  name="checkbox1"
+                  value="checkbox1"
+                />
+                <label for="checkbox1">Wheelchair accessible</label>
+              </div>
+              <div class="accet-item">
+                <input
+                  type="checkbox"
+                  id="checkbox2"
+                  name="checkbox2"
+                  value="checkbox2"
+                />
+                <label for="checkbox2">Public transit accessibie</label>
+              </div>
+              <div class="accet-item">
+                <input
+                  type="checkbox"
+                  id="checkbox3"
+                  name="checkbox3"
+                  value="checkbox3"
+                />
+                <label for="checkbox3">Evening/weekend hours</label>
+              </div>
+              <div class="accet-item">
+                <input
+                  type="checkbox"
+                  id="checkbox4"
+                  name="checkbox4"
+                  value="checkbox4"
+                />
+                <label for="checkbox4"> Teleheaith available</label>
+              </div>
+            </div>
+            <div class="form-input search">Search Resources</div>
+          </div>
+        
+        </form>
+       
+      </div>
+    </div>
+    <script>
+      document.getElementById('shareData').addEventListener('change', function() {
+        const uploadSection = document.getElementById('uploadSection');
+        uploadSection.style.display = this.checked ? 'block' : 'none';
+      });
+    </script>
+    
+    <script src="chat-widget.js"></script>
+    <div class="chat-widget">
+      <div class="chat-button" onclick="toggleChat()">
+          <i class="fas fa-robot"></i>
+      </div>
+      <div class="chat-window" id="chatWindow">
+          <div class="chat-header">
+              <i class="fas fa-robot"></i>
+              AI Assistant
+          </div>
+          <div class="chat-messages" id="chatMessages">
+              <div class="message bot">Hello! How can I help you today?</div>
+          </div>
+          <div class="chat-input">
+              <input type="text" placeholder="Type your message..." id="messageInput">
+              <button onclick="sendMessage()">Send</button>
+          </div>
+      </div>
+  </div>
+  </body>
+</html>

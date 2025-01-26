@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>DocForm - StatusNeutralAI</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link rel="stylesheet" href="chat-widget.css"/>
+
+   <style>
+       * {
+           padding: 0;
+           margin: 0;
+           box-sizing: border-box;
+           font-family: Arial, sans-serif;
+       }
+
+       .container {
+           max-width: 1200px;
+           margin: 0 auto;
+           padding: 20px;
+       }
+
+       nav {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           margin-bottom: 50px;
+       }
+
+       .logo {
+           color: #6b46c1;
+           font-size: 24px;
+           font-weight: bold;
+       }
+
+       .nav-links {
+           display: flex;
+           gap: 30px;
+           align-items: center;
+       }
+
+       .nav-links a {
+           text-decoration: none;
+           color: #333;
+           font-size: 16px;
+       }
+
+       .find-care-btn {
+           background-color: #6b46c1;
+           color: white;
+           padding: 10px 20px;
+           border-radius: 5px;
+           text-decoration: none;
+       }
+
+       .docform-container {
+           background: white;
+           padding: 40px;
+       }
+
+       .doc-header {
+           display: flex;
+           justify-content: flex-start;
+           margin-bottom: 40px;
+       }
+
+       .ai-doc-status {
+           color: #6b46c1;
+           font-size: 24px;
+           display: flex;
+           align-items: center;
+           gap: 10px;
+       }
+
+       .forms-grid {
+           display: grid;
+           grid-template-columns: repeat(3, 1fr);
+           gap: 20px;
+           margin-top: 30px;
+       }
+
+       .form-card {
+           background: #f8f9fa;
+           padding: 25px;
+           border-radius: 8px;
+           cursor: pointer;
+           transition: all 0.3s ease;
+       }
+
+       .form-card:hover {
+           transform: translateY(-5px);
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+       }
+
+       .form-icon {
+           font-size: 24px;
+           color: #6b46c1;
+           margin-bottom: 15px;
+       }
+
+       .form-title {
+           font-size: 18px;
+           font-weight: bold;
+           margin-bottom: 10px;
+           color: #333;
+       }
+
+       .form-description {
+           font-size: 14px;
+           color: #666;
+           margin-bottom: 15px;
+       }
+
+       .auto-fill-badge {
+           display: inline-block;
+           background: #28a745;
+           color: white;
+           padding: 4px 12px;
+           border-radius: 12px;
+           font-size: 12px;
+       }
+
+       .upload-area {
+           border: 2px dashed #ddd;
+           padding: 30px;
+           text-align: center;
+           border-radius: 8px;
+           margin-top: 30px;
+       }
+
+       .upload-area i {
+           font-size: 32px;
+           color: #6b46c1;
+           margin-bottom: 10px;
+       }
+
+       .upload-text {
+           color: #666;
+           margin-bottom: 15px;
+       }
+
+       .progress-section {
+           margin-top: 30px;
+           display: none;
+       }
+
+       .progress-bar {
+           height: 8px;
+           background: #eee;
+           border-radius: 4px;
+           overflow: hidden;
+           margin-bottom: 10px;
+       }
+
+       .progress-fill {
+           height: 100%;
+           background: #6b46c1;
+           width: 0%;
+           transition: width 0.3s ease;
+       }
+
+       .status-text {
+           color: #666;
+           font-size: 14px;
+       }
+   </style>
+</head>
+<body>
+   <div class="container">
+       <nav>
+           <div class="logo">StatusNeutralAI</div>
+           <div class="nav-links">
+               <a href="index.html">Coordinate strategic development</a>
+               <a href="communication.html">Communication</a>
+               <a href="schedule.html">Schedule Appointment</a>
+               <a href="docform.html">DocForm</a>
+               <a href="evaluation.html">Evaluation</a>
+           </div>
+       </nav>
+
+       <div class="docform-container">
+           <div class="doc-header">
+               <div class="ai-doc-status">
+                   <i class="fas fa-robot"></i>
+                   AI Form Processing Active
+               </div>
+           </div>
+
+           <div class="forms-grid">
+               <div class="form-card">
+                   <div class="form-icon">
+                       <i class="fas fa-file-medical"></i>
+                   </div>
+                   <div class="form-title">Insurance Verification</div>
+                   <div class="form-description">Automatically verify and process insurance coverage forms</div>
+                   <span class="auto-fill-badge">Auto-fill Available</span>
+               </div>
+
+               <div class="form-card">
+                   <div class="form-icon">
+                       <i class="fas fa-clipboard-check"></i>
+                   </div>
+                   <div class="form-title">Medical History</div>
+                   <div class="form-description">Complete medical history forms with AI assistance</div>
+                   <span class="auto-fill-badge">Auto-fill Available</span>
+               </div>
+
+               <div class="form-card">
+                   <div class="form-icon">
+                       <i class="fas fa-file-signature"></i>
+                   </div>
+                   <div class="form-title">Consent Forms</div>
+                   <div class="form-description">Process and sign required consent documentation</div>
+                   <span class="auto-fill-badge">Auto-fill Available</span>
+               </div>
+
+               <div class="form-card">
+                   <div class="form-icon">
+                       <i class="fas fa-prescription"></i>
+                   </div>
+                   <div class="form-title">Prescription Forms</div>
+                   <div class="form-description">Process prescription and medication forms</div>
+                   <span class="auto-fill-badge">Auto-fill Available</span>
+               </div>
+
+               <div class="form-card">
+                   <div class="form-icon">
+                       <i class="fas fa-calendar-check"></i>
+                   </div>
+                   <div class="form-title">Appointment Forms</div>
+                   <div class="form-description">Complete appointment-related documentation</div>
+                   <span class="auto-fill-badge">Auto-fill Available</span>
+               </div>
+
+               <div class="form-card">
+                   <div class="form-icon">
+                       <i class="fas fa-file-alt"></i>
+                   </div>
+                   <div class="form-title">Custom Forms</div>
+                   <div class="form-description">Upload and process any other medical forms</div>
+                   <span class="auto-fill-badge">Auto-fill Available</span>
+               </div>
+           </div>
+
+           <div class="upload-area">
+               <i class="fas fa-cloud-upload-alt"></i>
+               <div class="upload-text">Drop your forms here or click to upload</div>
+               <input type="file" id="formUpload" style="display: none;" multiple>
+           </div>
+
+           <div class="progress-section">
+               <div class="progress-bar">
+                   <div class="progress-fill"></div>
+               </div>
+               <div class="status-text">Processing form...</div>
+           </div>
+       </div>
+   </div>
+
+   <script>
+       const formCards = document.querySelectorAll('.form-card');
+       const uploadArea = document.querySelector('.upload-area');
+       const progressSection = document.querySelector('.progress-section');
+       const progressFill = document.querySelector('.progress-fill');
+       const statusText = document.querySelector('.status-text');
+
+       formCards.forEach(card => {
+           card.addEventListener('click', () => {
+               document.getElementById('formUpload').click();
+           });
+       });
+
+       uploadArea.addEventListener('click', () => {
+           document.getElementById('formUpload').click();
+       });
+
+       uploadArea.addEventListener('dragover', (e) => {
+           e.preventDefault();
+           uploadArea.style.borderColor = '#6b46c1';
+       });
+
+       uploadArea.addEventListener('dragleave', () => {
+           uploadArea.style.borderColor = '#ddd';
+       });
+
+       uploadArea.addEventListener('drop', (e) => {
+           e.preventDefault();
+           uploadArea.style.borderColor = '#ddd';
+           const files = e.dataTransfer.files;
+           handleFiles(files);
+       });
+
+       document.getElementById('formUpload').addEventListener('change', (e) => {
+           handleFiles(e.target.files);
+       });
+
+       function handleFiles(files) {
+           if (files.length > 0) {
+               progressSection.style.display = 'block';
+               simulateProcessing();
+           }
+       }
+
+       function simulateProcessing() {
+           let progress = 0;
+           const interval = setInterval(() => {
+               progress += 5;
+               progressFill.style.width = `${progress}%`;
+               
+               if (progress >= 100) {
+                   clearInterval(interval);
+                   statusText.textContent = 'Form processed successfully!';
+                   setTimeout(() => {
+                       progressSection.style.display = 'none';
+                       progressFill.style.width = '0%';
+                       statusText.textContent = 'Processing form...';
+                   }, 2000);
+               }
+           }, 100);
+       }
+   </script>
+   </div>
+   <script src="chat-widget.js"></script>
+   <div class="chat-widget">
+       <div class="chat-button" onclick="toggleChat()">
+           <i class="fas fa-robot"></i>
+       </div>
+       <div class="chat-window" id="chatWindow">
+           <div class="chat-header">
+               <i class="fas fa-robot"></i>
+               AI Assistant
+           </div>
+           <div class="chat-messages" id="chatMessages">
+               <div class="message bot">Hello! How can I help you today?</div>
+           </div>
+           <div class="chat-input">
+               <input type="text" placeholder="Type your message..." id="messageInput">
+               <button onclick="sendMessage()">Send</button>
+           </div>
+       </div>
+   </div>
+</body>
+</html>
